@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Title>Cake.TeamCityCoverageReporter</Title>
+    <Authors>wozzo17, thnk2wn</Authors>
+    <PackageLicenseUrl>https://github.com/wozzo/Cake.TeamCityCoverageReporter/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/wozzo/Cake.TeamCityCoverageReporter</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
