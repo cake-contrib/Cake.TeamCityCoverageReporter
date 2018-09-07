@@ -8,7 +8,7 @@ BuildParameters.SetParameters(context: Context,
                             sourceDirectoryPath: "./src",
                             title: "Cake.TeamCityCoverageReporter",
                             repositoryOwner: "cake-contrib",
-                            repositoryName: "Cake.Graph",
+                            repositoryName: "Cake.TeamCityCoverageReporter",
                             appVeyorAccountName: "cakecontrib",
                             shouldRunGitVersion: true);
 
