@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CoverageSession Version="4.6.796.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Summary numMethods="1052" visitedMethods="803" numClasses="600" visitedClasses="477" minCrapScore="1" maxCrapScore="182" minCyclomaticComplexity="1" maxCylcomaticComplexity="71" branchCoverage="57.80" sequenceCoverage="73.57" visitedBranchPoints="1600" numBranchPoints="1600" visitedSequencePoints="3519" numSequencePoints="4783" />
+    <Modules></Modules>
+</CoverageSession>
