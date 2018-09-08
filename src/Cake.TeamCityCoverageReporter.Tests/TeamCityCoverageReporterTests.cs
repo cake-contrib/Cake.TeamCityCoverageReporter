@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Cake.Core;
 using Cake.Core.Diagnostics;
+using Cake.Core.IO;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -16,9 +17,9 @@ namespace Cake.TeamCityCoverageReporter.Tests
         public async Task GIVEN_SampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
         {
             // Given
-            const string sampleFilePath = @".\Sample1.xml";
+            const string sampleFile = @".\Sample1.xml";
             const string sampleExpectedResultsPath = @".\Sample1-Expected.txt";
-
+            var sampleFilePath = new FilePath(sampleFile);
             var mockCakeContext = new Mock<ICakeContext>();
             var mockCakeLog = new Mock<ICakeLog>();
             mockCakeContext
