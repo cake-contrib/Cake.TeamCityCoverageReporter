@@ -65,9 +65,9 @@ namespace Cake.TeamCityCoverageReporter
             double total = Convert.ToDouble(summary.Attribute(ocTotalAttr)?.Value);
             double coverage = (visited / total) * 100;
         
-            context.Log.Information($"##teamcity[buildStatisticValue key='{tcVisitedKey}' value='{visited}']");
-            context.Log.Information($"##teamcity[buildStatisticValue key='{tcTotalKey}' value='{total}']");
-            context.Log.Information($"##teamcity[buildStatisticValue key='{tcCoverageKey}' value='{coverage}']");
+            context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcVisitedKey}' value='{visited}']"));
+            context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcTotalKey}' value='{total}']"));
+            context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcCoverageKey}' value='{coverage}']"));
         }
     }
 }
