@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
+using Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -28,7 +29,7 @@ namespace Cake.TeamCityCoverageReporter.Tests
             var loggedRows = new List<string>();
             mockCakeLog
                 .Setup(x => x.Write(It.IsAny<Verbosity>(), It.IsAny<LogLevel>(), It.IsAny<string>(), It.IsAny<object[]>()))
-                .Callback<Verbosity, LogLevel, string, object[]>((verbosity, logLevel, format, objects) 
+                .Callback<Verbosity, LogLevel, string, object[]>((verbosity, logLevel, format, objects)
                     => loggedRows.Add(string.Format(format, objects)));
 
             // When
@@ -38,6 +39,19 @@ namespace Cake.TeamCityCoverageReporter.Tests
             var result = string.Join("\r\n", loggedRows);
             var expected = await File.ReadAllTextAsync(sampleExpectedResultsPath).ConfigureAwait(false);
             result.ShouldBe(expected);
+        }
+        [Fact]
+        [UseCulture("fr-FR")]
+        public async Task GIVEN_SampleFiles_WithFrench_Culture_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
+        {
+            await GIVEN_SampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected();
+        }
+
+        [Fact]
+        [UseCulture("en-GB")]
+        public async Task GIVEN_SampleFiles_WithEnglish_Culture_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
+        {
+            await GIVEN_SampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected();
         }
     }
 }
