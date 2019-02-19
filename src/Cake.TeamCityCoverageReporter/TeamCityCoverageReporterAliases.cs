@@ -69,9 +69,9 @@ namespace Cake.TeamCityCoverageReporter
                 coverage = 0.0d;
             }
         
-            context.Log.Information($"##teamcity[buildStatisticValue key='{tcVisitedKey}' value='{visited}']");
-            context.Log.Information($"##teamcity[buildStatisticValue key='{tcTotalKey}' value='{total}']");
-            context.Log.Information($"##teamcity[buildStatisticValue key='{tcCoverageKey}' value='{coverage}']");
+            context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcVisitedKey}' value='{visited}']"));
+            context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcTotalKey}' value='{total}']"));
+            context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcCoverageKey}' value='{coverage}']"));
         }
     }
 }

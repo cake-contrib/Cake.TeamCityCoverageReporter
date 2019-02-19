@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
+using Microsoft.EntityFrameworkCore.Specification.Tests.TestUtilities.Xunit;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -38,20 +39,34 @@ namespace Cake.TeamCityCoverageReporter.Tests
         }
 
         [Fact]
-        public async Task GIVEN_SampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
+        [UseCulture("fr-FR")]
+        public Task GIVEN_SampleFiles_WithFrench_Culture_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
         {
-            const string sampleFile = @".\Sample1.xml";
-            const string sampleExpectedResultsPath = @".\Sample1-Expected.txt";
-            await WhenReceiveThenExpectTeamCityCoverageReport(sampleFile, sampleExpectedResultsPath);
+            return GIVEN_SampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected();
         }
 
         [Fact]
-        public async Task GIVEN_EmptySampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
+        [UseCulture("en-GB")]
+        public Task GIVEN_SampleFiles_WithEnglish_Culture_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
+        {
+            return GIVEN_SampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected();
+        }
+
+        [Fact]
+        public Task GIVEN_SampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
+        {
+            const string sampleFile = @".\Sample1.xml";
+            const string sampleExpectedResultsPath = @".\Sample1-Expected.txt";
+            return WhenReceiveThenExpectTeamCityCoverageReport(sampleFile, sampleExpectedResultsPath);
+        }
+
+        [Fact]
+        public Task GIVEN_EmptySampleFiles_WHEN_ReporterCalled_THEN_OutputIsAsExpected()
         {
             // Given
             const string sampleFile = @".\Sample2-Empty.xml";
             const string sampleExpectedResultsPath = @".\Sample2-Empty-Expected.txt";
-            await WhenReceiveThenExpectTeamCityCoverageReport(sampleFile, sampleExpectedResultsPath);
+            return WhenReceiveThenExpectTeamCityCoverageReport(sampleFile, sampleExpectedResultsPath);
         }
     }
 }
