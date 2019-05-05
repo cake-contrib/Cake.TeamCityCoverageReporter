@@ -1,6 +1,5 @@
-#load nuget:https://www.myget.org/F/cake-contrib/api/v2?package=Cake.Recipe&prerelease
+#load nuget:?package=Cake.Recipe&version=1.0.0
 #load "docs-prep.cake"
-#addin nuget:?package=Cake.TeamCityCoverageReporter&PreRelease
 
 Environment.SetVariableNames();
 
@@ -8,29 +7,23 @@ BuildParameters.SetParameters(context: Context,
                             buildSystem: BuildSystem,
                             sourceDirectoryPath: "./src",
                             title: "Cake.TeamCityCoverageReporter",
-                            repositoryOwner: "cake-contrib",
+                            repositoryOwner: "wozzo",
                             repositoryName: "Cake.TeamCityCoverageReporter",
-                            appVeyorAccountName: "cakecontrib",
+                            appVeyorAccountName: "wozzo",
                             shouldRunGitVersion: true,
-                            shouldRunDotNetCorePack: true);
+                            shouldRunDotNetCorePack: true,
+                            shouldRunCodecov: false);
 
 BuildParameters.PrintParameters(Context);
 
-ToolSettings.SetToolSettings(context: Context,
-                            dupFinderExcludePattern: new string[] {
-                                BuildParameters.RootDirectoryPath + "/src/Cake.TeamCityCoverageReporter.Tests/*.cs"
-                                },
-                            testCoverageFilter: "+[*]* -[xunit.*]* -[Cake.Core]* -[Cake.Testing]* -[*.Tests]* -[Moq*]* -[AutoFixture*]* ",
-                            testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
-                            testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
+ToolSettings.SetToolSettings(context: Context);
 
-Task("Report-Coverage-To-TeamCity")
-    .IsDependentOn("DotNetCore-Test")
-    .Does(() => {
-        TeamCityCoverageReporter(BuildParameters.Paths.Files.TestCoverageOutputFilePath);
-    });
+// Task("Report-Coverage-To-TeamCity")
+//     .IsDependentOn("DotNetCore-Test")
+//     .Does(() => {
+//         TeamCityCoverageReporter(BuildParameters.Paths.Files.TestCoverageOutputFilePath);
+//     });
 
-BuildParameters.Tasks.TestTask.IsDependentOn("Report-Coverage-To-TeamCity");
+// BuildParameters.Tasks.TestTask.IsDependentOn("Report-Coverage-To-TeamCity");
 
-#break
 Build.RunDotNetCore();
