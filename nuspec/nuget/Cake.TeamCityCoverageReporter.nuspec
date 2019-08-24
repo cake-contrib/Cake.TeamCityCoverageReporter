@@ -4,13 +4,14 @@
     <id>Cake.TeamCityCoverageReporter</id>
     <title>Cake.TeamCityCoverageReporter</title>
     <authors>Warren Bates, Geoff Hudik</authors>
-    <owners>Warren Bates, Geoff Hudik</owners>
-    <licenseUrl>https://github.com/cake-contrib/Cake.TeamCityCoverageReporter/blob/master/LICENSE</licenseUrl>
+    <owners>Warren Bates, Geoff Hudik, cake-contrib</owners>
     <projectUrl>https://github.com/cake-contrib/Cake.TeamCityCoverageReporter</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Cake Add in for reporting OpenCover results to TeamCity</summary>
     <description>An alias for Cake to report OpenCover results to TeamCity</description>
+    <license type="expression">MIT</license>
+    <repository type="git" url="https://github.com/cake-contrib/Cake.TeamCityCoverageReporter.git"/>
     <tags>Cake Team City TeamCity Open Cover OpenCover report reporter coverage code test</tags>
   </metadata>
   <files>
