@@ -4,8 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Title>Cake.TeamCityCoverageReporter</Title>
     <Authors>wozzo17, thnk2wn</Authors>
-    <PackageLicenseUrl>https://github.com/wozzo/Cake.TeamCityCoverageReporter/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/wozzo/Cake.TeamCityCoverageReporter</PackageProjectUrl>
+    <Owners>wozze17;cake-contrib</Owners>
+    <PackageLicenseUrl>https://github.com/cake-contrib/Cake.TeamCityCoverageReporter/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/cake-contrib/Cake.TeamCityCoverageReporter</PackageProjectUrl>
     <IncludeSymbols>True</IncludeSymbols>
   </PropertyGroup>
 
