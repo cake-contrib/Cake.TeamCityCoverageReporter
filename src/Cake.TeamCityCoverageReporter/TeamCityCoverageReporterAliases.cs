@@ -8,58 +8,61 @@ using Cake.Core.IO;
 
 namespace Cake.TeamCityCoverageReporter
 {
+    [CakeAliasCategory("TeamCity")]
     public static class TeamCityCoverageReporterAliases {
         [CakeMethodAlias]
+        [CakeAliasCategory("Code Coverage")]
         public static void TeamCityCoverageReporter(this ICakeContext context, FilePath openCoverResultsFilePath) {
             context.TeamCityCoverageReporter(openCoverResultsFilePath.FullPath);
         }
 
         [CakeMethodAlias]
+        [CakeAliasCategory("Code Coverage")]
         public static void TeamCityCoverageReporter(this ICakeContext context, string openCoverResultsFilePath) {
             var doc = XDocument.Load(openCoverResultsFilePath);
             var summary = doc.XPathSelectElement("/CoverageSession/Summary");
-        
+
             // Classes.
             ReportCoverageMetric(
                 context,
-                summary, 
-                "visitedClasses", "CodeCoverageAbsCCovered", 
-                "numClasses", "CodeCoverageAbsCTotal", 
+                summary,
+                "visitedClasses", "CodeCoverageAbsCCovered",
+                "numClasses", "CodeCoverageAbsCTotal",
                 "CodeCoverageC");
-        
+
             // Methods.
             ReportCoverageMetric(
                 context,
-                summary, 
-                "visitedMethods", "CodeCoverageAbsMCovered", 
-                "numMethods", "CodeCoverageAbsMTotal", 
+                summary,
+                "visitedMethods", "CodeCoverageAbsMCovered",
+                "numMethods", "CodeCoverageAbsMTotal",
                 "CodeCoverageM");
-        
+
             // Sequence points / statements.
             ReportCoverageMetric(
                 context,
-                summary, 
-                "visitedSequencePoints", "CodeCoverageAbsSCovered", 
-                "numSequencePoints", "CodeCoverageAbsSTotal", 
+                summary,
+                "visitedSequencePoints", "CodeCoverageAbsSCovered",
+                "numSequencePoints", "CodeCoverageAbsSTotal",
                 "CodeCoverageS");
-        
+
             // Branches.
             ReportCoverageMetric(
                 context,
-                summary, 
-                "visitedBranchPoints", "CodeCoverageAbsBCovered", 
-                "numBranchPoints", "CodeCoverageAbsBTotal", 
+                summary,
+                "visitedBranchPoints", "CodeCoverageAbsBCovered",
+                "numBranchPoints", "CodeCoverageAbsBTotal",
                 "CodeCoverageB");
         }
 
         private static void ReportCoverageMetric(
             ICakeContext context,
-            XElement summary, 
-            string ocVisitedAttr, 
-            string tcVisitedKey, 
-            string ocTotalAttr, 
+            XElement summary,
+            string ocVisitedAttr,
+            string tcVisitedKey,
+            string ocTotalAttr,
             string tcTotalKey,
-            string tcCoverageKey) 
+            string tcCoverageKey)
         {
             double visited = Convert.ToDouble(summary.Attribute(ocVisitedAttr)?.Value);
             double total = Convert.ToDouble(summary.Attribute(ocTotalAttr)?.Value);
@@ -68,7 +71,7 @@ namespace Cake.TeamCityCoverageReporter
             {
                 coverage = 0.0d;
             }
-        
+
             context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcVisitedKey}' value='{visited}']"));
             context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcTotalKey}' value='{total}']"));
             context.Log.Information(FormattableString.Invariant($"##teamcity[buildStatisticValue key='{tcCoverageKey}' value='{coverage}']"));
